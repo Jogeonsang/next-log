@@ -1,12 +1,20 @@
-import { useTheme } from "next-themes";
+import SearchCommand from "./searchCommand";
+import NavToggles from "./toggle";
+import PageNav from "./nav";
 
 function Header() {
-  const { setTheme, theme } = useTheme();
-
   return (
-    <div onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-      Toggle
-    </div>
+    <header className="sticky top-0 z-10 w-full border-b bg-background/95 backdrop-blur">
+      <div className="container flex h-14 items-center justify-between">
+        <div className="md:flex">
+          <PageNav />
+        </div>
+        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+          <SearchCommand />
+          <NavToggles />
+        </div>
+      </div>
+    </header>
   );
 }
 
