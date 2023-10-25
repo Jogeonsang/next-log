@@ -75,6 +75,7 @@ module.exports = {
       },
       width: {
         "full-minus-1": "calc(100% - 1rem)",
+        "full-minus-3": "calc(100% - 3rem)",
       },
     },
   },

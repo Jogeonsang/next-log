@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Logo from "~components/icon/logo";
 import MenuIcon from "~components/icon/menuIcon";
 import {
   Sheet,
@@ -15,11 +17,27 @@ function NavSheet() {
         <MenuIcon />
       </SheetTrigger>
       <SheetContent side={"left"}>
-        <SheetHeader>
-          <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+        <SheetHeader className="text-left">
+          <SheetTitle>
+            <Link className="flex items-center" href="/">
+              <Logo className="mr-2 h-4 w-4" />
+              <span className="font-bold">next log</span>
+            </Link>
+          </SheetTitle>
+          <SheetDescription className="relative overflow-hidden my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
+            <div className="flex flex-col space-y-3">
+              <Link href="/article">Article</Link>
+              <Link href="/resume">Resume</Link>
+              <Link href="https://github.com/Jogeonsang" target="_blank">
+                GitHub
+              </Link>
+              <Link
+                href={"https://www.linkedin.com/in/geonsan-jo-5a570612b/"}
+                target="_blank"
+              >
+                LinkdeIn
+              </Link>
+            </div>
           </SheetDescription>
         </SheetHeader>
       </SheetContent>
