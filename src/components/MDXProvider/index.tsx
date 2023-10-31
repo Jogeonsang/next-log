@@ -1,7 +1,12 @@
-import { ReactElement, ReactNode, createElement } from "react";
+import { createElement } from "react";
+import type { ReactNode } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import Image, { type ImageProps } from "next/image";
 import type { Components } from "@mdx-js/react/lib";
+
+type Props = {
+  children: ReactNode | null | undefined;
+};
 
 const DEFAULT_COMPONENTS = {
   img: (props) =>
@@ -15,14 +20,6 @@ const useComponents = (): Components => {
   return {};
 };
 
-export const MDXTheme = ({
-  children,
-}: {
-  children: ReactNode;
-}): ReactElement => {
-  return (
-    <MDXProvider components={useComponents()} disableParentContext={false}>
-      {children}
-    </MDXProvider>
-  );
+export const MDXTheme = ({ children }: Props) => {
+  return <MDXProvider components={useComponents()}>{children}</MDXProvider>;
 };
