@@ -10,7 +10,7 @@ code[class*="language-"] {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  line-height: 1.5;
+  line-height: 1.25rem;
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
@@ -28,6 +28,16 @@ code[class*="language-"] *::selection {
   background-color: hsl(204deg 100% 77%/0.1);
 }
 
+pre {
+  white-space-collapse: preserve;
+  text-wrap: nowrap;
+  border-radius: 0.75rem;
+}
+code {
+  display: block;
+  width: 100%;
+  padding: 0;
+}
 @media print {
   pre[class*="language-"],
   code[class*="language-"] {
@@ -36,15 +46,16 @@ code[class*="language-"] *::selection {
 }
 
 pre[class*="language-"] {
-  padding: 1em;
-  margin: 0.5em 0;
+  padding: 1em 0;
+  padding-top: 53px;
+  margin: 0;
   overflow: auto;
   background-color: hsl(204deg 100% 77%/0.1);
 }
 
 :not(pre) > code[class*="language-"] {
   padding: 0.1em 0.3em;
-  border-radius: 0.3em;
+
   color: #db4c69;
   background-color: hsl(204deg 100% 77%/0.1);
 }
@@ -269,15 +280,14 @@ pre[class*="language-"] > code[class*="language-"] {
   z-index: 1;
 }
 
+.code-line {
+  padding: 0 1rem;
+  display: block;
+}
 .line-highlight.line-highlight {
   background: #f7ebc6;
   box-shadow: inset 5px 0 0 #f7d87c;
   z-index: 0;
-}
-
-.rehype-code-title {
-  /* ... */
-  @apply rounded-t-lg border border-b-0 px-5 py-3 text-sm font-bold;
 }
 
 .highlight-line {
@@ -287,4 +297,15 @@ pre[class*="language-"] > code[class*="language-"] {
   color: hsl(204deg 100% 45%/0.5);
   --tw-shadow: 2px 0 currentColor inset;
   --tw-shadow-colored: inset 2px 0 var(--tw-shadow-color);
+}
+
+.rehype-code-title {
+  --tw-text-opacity: 1;
+  color: rgba(229, 231, 235, var(--tw-text-opacity));
+  background-color: hsl(204deg 100% 77%/0.1);
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  margin-bottom: -37px;
 }

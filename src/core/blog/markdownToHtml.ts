@@ -18,6 +18,7 @@ export default async function markdownToHtml(markdown: string) {
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeSlug)
     .use(rehypeAddClasses, { "h1,h2": "heading" })
+    .use(rehypeCodeTitles)
     .use(rehypePrism, { ignoreMissing: true })
     .use(rehypePrettyCode, { theme: "one-dark-pro" })
     .use(rehypeExternalLinks, {
