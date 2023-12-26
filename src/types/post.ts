@@ -1,8 +1,13 @@
 export type PostMetadata = {
-  title: string;
-  date: string;
   slug: string;
-  [key: string]: any;
+  metadata: {
+    title: string;
+    date: string;
+    thumbnail?: string;
+    description: string;
+    author: string;
+  };
+  content: string;
 };
 
 export type Post = {

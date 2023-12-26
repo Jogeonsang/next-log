@@ -8,6 +8,14 @@ module.exports = {
     "./src/**/*.{ts,tsx,md,mdx}",
   ],
   theme: {
+    fontSize: {
+      "4xl": [
+        "36px",
+        {
+          lineHeight: "1.4",
+        },
+      ],
+    },
     container: {
       center: true,
       padding: {
@@ -25,6 +33,8 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        red: "hsl(var(--red))",
+        blue: "hsl(var(--blue))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

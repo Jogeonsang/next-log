@@ -1,8 +1,6 @@
 import { getPostBySlug, getAllPosts } from "~utils/posts";
 import { GetStaticPaths, GetStaticProps } from "next";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import markdownToHtml from "~core/blog/markdownToHtml";
-import { MDXTheme } from "~components/MDXProvider";
 
 type PostPageProps = {
   post: {
@@ -13,7 +11,7 @@ type PostPageProps = {
 
 const PostPage: React.FC<PostPageProps> = ({ post }) => {
   return (
-    <article className="prose dark:prose-invert max-w-none prose-pre:rounded-[9px]">
+    <article className="prose dark:prose-invert max-w-none prose-pre:rounded-[9px] my-16">
       <h1>{post.metadata.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
     </article>
@@ -32,7 +30,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = getPostBySlug(params.slug);
 
   const mdxSource = await markdownToHtml(post.content);
-  console.log(mdxSource);
 
   return {
     props: {
