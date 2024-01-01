@@ -2,7 +2,6 @@ import { serialize } from "next-mdx-remote/serialize";
 import { TableOfContents } from "./types";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeCodeTitles from "rehype-code-titles";
-import rehypePrism from "rehype-prism-plus";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
@@ -48,7 +47,6 @@ export const serializeMdx = (sorce: string) => {
       rehypePlugins: [
         rehypeSlug,
         rehypeCodeTitles,
-        rehypePrism,
         [
           rehypeAutolinkHeadings,
           {

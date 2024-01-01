@@ -11,7 +11,6 @@ type PostPageProps = {
 };
 
 const PostPage: React.FC<PostPageProps> = ({ post }) => {
-  console.log(post);
   return (
     <article className="prose dark:prose-invert max-w-none prose-pre:rounded-[9px] my-16">
       <div className="max-w-[1000px] m-auto text-center">

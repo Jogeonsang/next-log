@@ -8,7 +8,6 @@ import rehypeStringify from "rehype-stringify";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import rehypePrettyCode from "rehype-pretty-code";
 import { unified } from "unified";
 
 export default async function markdownToHtml(markdown: string) {
@@ -20,7 +19,6 @@ export default async function markdownToHtml(markdown: string) {
     .use(rehypeAddClasses, { "h1,h2": "heading" })
     .use(rehypeCodeTitles)
     .use(rehypePrism, { ignoreMissing: true })
-    .use(rehypePrettyCode, { theme: "one-dark-pro" })
     .use(rehypeExternalLinks, {
       target: "_blank",
       rel: ["noopener", "noreferer"],
