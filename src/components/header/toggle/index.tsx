@@ -23,11 +23,7 @@ function NavToggles() {
 
   return (
     <nav className="flex items-center">
-      <Link
-        href={"https://github.com/Jogeonsang/next-log"}
-        target="_blank"
-        passHref
-      >
+      <Link href={"https://github.com/Jogeonsang"} target="_blank" passHref>
         <Button variant="ghost" className="w-9 shrink-0 px-0">
           <GithubIcon className="h-4 w-4" />
         </Button>

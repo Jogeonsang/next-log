@@ -21,8 +21,8 @@ function Article({ posts }: PostsPageProps) {
               href={`/posts/${post.slug}`}
               className="flex items-center gap-x-12"
             >
-              <Image
-                src={post?.metadata.thumbnail ?? ""}
+              <img
+                src={`/posts/${post.slug}/${post?.metadata.thumbnail ?? ""}`}
                 alt={`${post.slug} thumbnail`}
                 width={240}
                 height={240}

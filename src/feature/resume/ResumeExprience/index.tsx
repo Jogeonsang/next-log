@@ -26,9 +26,11 @@ function ResumeExprience() {
                   <ul className="m-0 p-0">
                     {project.responsibilities?.map(
                       (responsibility, respIndex) => (
-                        <li key={respIndex} className="ml-4">
-                          {responsibility}
-                        </li>
+                        <li
+                          key={respIndex}
+                          className="ml-4"
+                          dangerouslySetInnerHTML={{ __html: responsibility }}
+                        />
                       )
                     )}
                   </ul>

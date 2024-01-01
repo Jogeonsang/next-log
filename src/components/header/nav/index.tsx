@@ -9,8 +9,11 @@ function PageNav() {
 
   return (
     <div className="md:flex">
-      <Link href="/" className="hidden md:flex mr-6 items-center space-x-2">
-        <span className="font-bold sm:inline-block">Next-log</span>
+      <Link
+        href="/posts"
+        className="hidden md:flex mr-6 items-center space-x-2"
+      >
+        <span className="font-bold sm:inline-block">Marcus-log</span>
       </Link>
       <nav className="hidden md:flex gap-6 items-center font-medium text-sm">
         <Link

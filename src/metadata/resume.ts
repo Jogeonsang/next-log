@@ -19,7 +19,7 @@ export const resumeInfo = {
           responsibilities: [
             "Proposed and designed the transition from a legacy codebase to a Server-Side Rendering (SSR) based web application.",
             "Streamlined legacy source code and optimized performance.",
-            "Suggested team coding conventions and participated in overall product design.",
+            "<a href='/posts/future-oriented-frontend-architecture' target={`_blank`}>Suggested team coding conventions and participated in overall product design.</a>",
             "Implemented improvements in Search Engine Optimization (SEO).",
           ],
         },

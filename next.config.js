@@ -7,7 +7,13 @@ const withMDX = require("@next/mdx")({
 module.exports = withMDX({
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
-  images: {
-    domains: ["static.toss.im"],
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/posts",
+        permanent: true,
+      },
+    ];
   },
 });

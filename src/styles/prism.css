@@ -1,6 +1,6 @@
 pre[class*="language-"],
 code[class*="language-"] {
-  color: #d4d4d4;
+  color: rgba(var(--code-highlight-color), 1);
   font-size: 13px;
   text-shadow: none;
   font-family: Menlo, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
@@ -82,7 +82,7 @@ pre[class*="language-"] {
 .token.punctuation,
 .language-html .language-css .token.punctuation,
 .language-html .language-javascript .token.punctuation {
-  color: #d4d4d4;
+  color: rgba(var(--code-highlight-color), 1);
 }
 
 .token.property,
@@ -301,7 +301,7 @@ pre[class*="language-"] > code[class*="language-"] {
 
 .rehype-code-title {
   --tw-text-opacity: 1;
-  color: rgba(229, 231, 235, var(--tw-text-opacity));
+  color: rgba(var(--code-highlight-color), var(--tw-text-opacity));
   background-color: hsl(204deg 100% 77%/0.1);
   font-size: 0.75rem;
   padding: 0.5rem 1rem;
