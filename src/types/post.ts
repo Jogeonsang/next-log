@@ -1,13 +1,12 @@
 export type PostMetadata = {
-  slug: string;
-  metadata: {
-    title: string;
-    date: string;
-    thumbnail?: string;
-    description: string;
-    author: string;
-  };
-  content: string;
+  title: string;
+  date: string;
+  thumbnail?: string;
+  description: string;
+  author: string;
+  introTitle: string;
+  introDesc: string;
+  category: string;
 };
 
 export type Post = {

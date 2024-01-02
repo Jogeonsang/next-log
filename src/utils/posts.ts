@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { Post, PostMetadata } from "~types/post";
 
 const postsDirectory = path.join(process.cwd(), "src", "posts");
 
@@ -29,11 +30,19 @@ export function getPostBySlug(slug: string) {
     data.date = data.date.toISOString();
   }
 
-  return { slug: realSlug, metadata: data, content };
+  return { slug: realSlug, metadata: data as PostMetadata, content };
 }
 
-export function getAllPosts() {
+export function getAllPosts(): Post[] {
   const slugs = getPostSlugs();
-  const posts = slugs.map((slug) => getPostBySlug(slug));
+  const posts: Post[] = slugs.map((slug) => getPostBySlug(slug));
+
+  posts.sort((post1, post2) => {
+    const date1 = new Date(post1.metadata.date);
+    const date2 = new Date(post2.metadata.date);
+
+    return date2.getTime() - date1.getTime();
+  });
+
   return posts;
 }

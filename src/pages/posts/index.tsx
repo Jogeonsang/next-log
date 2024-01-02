@@ -21,14 +21,16 @@ function Article({ posts }: PostsPageProps) {
               href={`/posts/${post.slug}`}
               className="flex items-center gap-x-12"
             >
-              <img
-                src={`/posts/${post.slug}/${post?.metadata.thumbnail ?? ""}`}
-                alt={`${post.slug} thumbnail`}
-                width={240}
-                height={240}
-                className="rounded-[14px] object-cover group-hover:-translate-y-1 transition-transform ease-in-out duration-200"
-                style={{ width: "240px", height: "240px" }}
-              />
+              {post.metadata.thumbnail && (
+                <img
+                  src={`/posts/${post.slug}/${post?.metadata.thumbnail ?? ""}`}
+                  alt={`${post.slug} thumbnail`}
+                  width={240}
+                  height={240}
+                  className="rounded-[14px] object-cover group-hover:-translate-y-1 transition-transform ease-in-out duration-200"
+                  style={{ width: "240px", height: "240px" }}
+                />
+              )}
               <div className="flex flex-col">
                 <span className="text-4xl font-bold mb-3  transition-colors duration-300 ease-in-out group-hover:text-blue">
                   {post.metadata.title}
