@@ -1,11 +1,10 @@
 import { GetStaticProps } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { PostMetadata } from "~types/post";
+import { Post } from "~types/post";
 import { getAllPosts } from "~utils/posts";
 
 type PostsPageProps = {
-  posts: PostMetadata[];
+  posts: Post[];
 };
 
 function Article({ posts }: PostsPageProps) {
