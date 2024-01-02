@@ -1,0 +1,51 @@
+---
+title: Migration to NextJS at Wanted Insight
+date: January 2, 2024
+description: This article introduce an overview of the migration process from React to NextJS.
+tags: ["Next", "Architecture"]
+published: True
+category: Next
+introTitle: Hello, I'm Geonsang Jo, a frontend developer at WantedLab.<br/><br/>In this article, I want to share the process of transitioning the main development stack of Wanted Insight from React to NextJS.
+introDesc: Here, we discuss the reasons behind the transition, the challenges we faced, and the journey we took in deciding to move to NextJS.
+---
+
+## What Was the Original State of Wanted-Insight?
+
+Wanted-Insight, built since 2017, had not been properly maintained until 2022.
+
+This led to slow build speeds and development due to legacy issues, lack of conventions, and fragmented code, making it difficult for developers to understand and manage the codebase. Additionally, strong dependencies on libraries made code modification challenging.
+
+Wanted-Insight was a service holding various employment-related data (like salaries, employee trends, revenue, reviews, etc.), which could be leveraged for SEO. However, being a React project made Server-Side Rendering (SSR) impossible, so we were using a Custom Express (Node Server) for SEO, which the team identified as a drawback.
+
+Therefore, the Wanted-Insight team set a goal to transition to NextJS.
+
+## Overall Flow of the Migration Process
+
+The migration process involved several key steps:
+
+1. Redefining Project Architecture and Conventions
+
+   - We redefined the project architecture and conventions suitable for a Next environment.
+   - This included a new folder structure and state management rules. For more details, please refer to [future-oriented-frontend-architecture](https://www.marcus-log.dev/posts/future-oriented-frontend-architecture) and [journey-zustand](https://www.marcus-log.dev/posts/journey-zustand).
+
+2. Converting Existing Code to TypeScript and Refactoring
+   - The original code was in JavaScript, not the Typesafe code our team desired. We set a goal to convert all code to TypeScript.
+3. Removing Unnecessary Libraries and UI Libraries
+
+   - Many codes in Wanted-Insight were written using Lodash, which was valuable in the JS era but less so in our now TypeScript project. We removed a total of 88 libraries, including Lodash.
+
+4. Setting up NextJS Project and Building System
+   - Having designed the architecture for NextJS in steps 1 and 3, we transferred the entire code from the old project to the new NextJS project.
+
+## Conclusion
+
+While not all considerations and discussions can be shared, through these steps, Wanted-Insight successfully completed the migration to NextJS.
+
+The migration to NextJS was more than just changing the project stack. It involved designing new conventions, changing to typesafe code, and shaping the future of the service.
+
+This effort resulted in the following outcomes:
+
+|             | **Wanted-Insight Legacy** | **Wanted-Inisght for Next** |
+| ----------- | ------------------------- | --------------------------- |
+| Bundle Size | 5.21MB                    | 700KB                       |
+| LCP         | 1.5s ~ 1.7s               | 0.6 ~ 0.8s                  |
