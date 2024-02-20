@@ -12,7 +12,7 @@ function ResumeExprience() {
                 <h3 className="mt-0">{exp.company}</h3>
                 <h4 className="mt-0">{exp.period}</h4>
                 <h4 className="mt-0">{exp.position}</h4>
-                <p>{exp.summary}</p>
+                <p dangerouslySetInnerHTML={{ __html: exp.summary }} />
               </div>
             </div>
             <div className="relative flex-[7_1_0%]">
