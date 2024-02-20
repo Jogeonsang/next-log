@@ -17,7 +17,7 @@ export const resumeInfo = {
           description:
             "At Wanted insight, I was involved in designing and managing a service that provided essential job-seeking information such as average company salaries, revenue, and employee count.",
           responsibilities: [
-            "Proposed and designed the transition from a legacy codebase to a Server-Side Rendering (SSR) based web application.",
+            "<a href='/posts/migrating-react-to-nextjs' taget='_blank'>Proposed and designed the transition from a legacy codebase to a Server-Side Rendering (SSR) based web application.</a>",
             "Streamlined legacy source code and optimized performance.",
             "<a href='/posts/future-oriented-frontend-architecture' target={`_blank`}>Suggested team coding conventions and participated in overall product design.</a>",
             "Implemented improvements in Search Engine Optimization (SEO).",
