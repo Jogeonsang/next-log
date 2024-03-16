@@ -9,7 +9,7 @@ type PostsPageProps = {
 
 function Article({ posts }: PostsPageProps) {
   return (
-    <section className="flex pt-12 w-[900px] m-auto">
+    <section className="flex pt-12 pb-14 w-[900px] m-auto">
       <ul className="flex flex-col gap-y-20">
         {posts.map((post) => (
           <li

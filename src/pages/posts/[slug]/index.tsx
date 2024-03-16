@@ -26,7 +26,7 @@ const PostPage: React.FC<PostPageProps> = ({ post }) => {
       <div className="max-w-[800px] m-auto">
         <div className="flex-col my-12">
           <h3 dangerouslySetInnerHTML={{ __html: post.metadata.introTitle }} />
-          <span className="">{post.metadata.introDesc}</span>
+          <span dangerouslySetInnerHTML={{ __html: post.metadata.introDesc }} />
         </div>
         <hr className="border-1 w-4/12 m-auto mb-20" />
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
