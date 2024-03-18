@@ -16,7 +16,7 @@ const PostPage: React.FC<PostPageProps> = ({ post }) => {
           <img
             src={`/posts/${post.slug}/${post.metadata.thumbnail}`}
             alt="Thumbnail"
-            className="rounded-[14px]"
+            className="rounded-[14px] w-[1000px]"
           />
         )}
         <p>
