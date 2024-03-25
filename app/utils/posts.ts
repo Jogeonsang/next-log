@@ -3,25 +3,26 @@ import path from "path";
 import matter from "gray-matter";
 import { Post, PostMetadata } from "../types/post";
 
-const postsDirectory = path.join(process.cwd(), "src", "posts");
+const postsDirectory = path.join(process.cwd(), "app/posts");
 
 export function getPostSlugs() {
   return fs.readdirSync(postsDirectory).filter((file) => {
-    const stat = fs.statSync(path.join(postsDirectory, file));
-    return stat.isDirectory();
+    const fullPath = path.join(postsDirectory, file);
+    const stat = fs.statSync(fullPath);
+    // '[slug]' 디렉토리는 제외하고 실제 게시물 디렉토리만 반환
+    return stat.isDirectory() && file !== "[slug]";
   });
 }
-
 export function getPostBySlug(slug: string) {
-  const realSlug = slug.replace(/\.md$/, "");
+  const decodedSlug = decodeURIComponent(slug);
 
-  let fullPath;
+  const realSlug = decodedSlug.replace(/\.mdx?$/, "");
+  const slugDirectoryPath = path.join(postsDirectory, realSlug);
 
-  if (fs.existsSync(path.join(postsDirectory, realSlug, "index.mdx"))) {
-    fullPath = path.join(postsDirectory, realSlug, "index.mdx");
-  } else {
-    fullPath = path.join(postsDirectory, realSlug, "index.md");
-  }
+  // 'index.mdx' 또는 'index.md' 파일을 찾습니다.
+  const fullPath = fs.existsSync(path.join(slugDirectoryPath, "index.mdx"))
+    ? path.join(slugDirectoryPath, "index.mdx")
+    : path.join(slugDirectoryPath, "index.md");
 
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);

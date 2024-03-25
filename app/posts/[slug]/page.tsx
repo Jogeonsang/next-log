@@ -1,13 +1,23 @@
-import { getPostBySlug, getAllPosts } from "../../utils/posts";
-import { GetStaticPaths, GetStaticProps } from "next";
-import markdownToHtml from "../../core/blog/markdownToHtml";
-import { Post } from "../../types/post";
+import { getPostBySlug, getAllPosts } from "~utils/posts";
+import markdownToHtml from "~core/blog/markdownToHtml";
+import { Post } from "~types/post";
 
-type PostPageProps = {
-  post: Post;
+const getPost = async (slug: string | undefined): Promise<Post> => {
+  if (!slug || typeof slug !== "string") {
+    throw new Response("Not Found", { status: 404 });
+  }
+
+  const post: Post = getPostBySlug(slug); // 가정: 이 함수는 Post 타입의 객체를 반환
+  const mdxSource = await markdownToHtml(post.content);
+
+  return {
+    ...{ ...post, content: mdxSource },
+  };
 };
 
-const PostPage: React.FC<PostPageProps> = ({ post }) => {
+const PostPage: React.FC = async ({ params }: any) => {
+  const post = await getPost(params.slug);
+
   return (
     <article className="prose dark:prose-invert max-w-none prose-pre:rounded-[9px] my-16">
       <div className="max-w-[1000px] m-auto text-center">
@@ -37,31 +47,9 @@ const PostPage: React.FC<PostPageProps> = ({ post }) => {
 
 export default PostPage;
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (!params?.slug || typeof params.slug !== "string") {
-    return {
-      notFound: true,
-    };
-  }
+export const dynamicParams = false;
 
-  const post = getPostBySlug(params.slug);
-
-  const mdxSource = await markdownToHtml(post.content);
-
-  return {
-    props: {
-      post: {
-        ...post,
-        content: mdxSource,
-      },
-    },
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
+export const generateStaticParams = async () => {
   const posts = getAllPosts();
-  return {
-    paths: posts.map((post) => ({ params: { slug: post.slug } })),
-    fallback: false,
-  };
+  return posts.map((post) => ({ params: { slug: post.slug } }));
 };
