@@ -1,6 +1,7 @@
 import { getPostBySlug, getAllPosts } from "~utils/posts";
 import markdownToHtml from "~core/blog/markdownToHtml";
-import { Post } from "~types/post";
+import { Post } from "../../../types/post";
+import Image from "next/image";
 
 const getPost = async (slug: string | undefined): Promise<Post> => {
   if (!slug || typeof slug !== "string") {
@@ -23,10 +24,17 @@ const PostPage: React.FC = async ({ params }: any) => {
       <div className="max-w-[1000px] m-auto text-center">
         <h1>{post.metadata.title}</h1>
         {post.metadata.thumbnail && (
-          <img
+          <Image
             src={`/posts/${post.slug}/${post.metadata.thumbnail}`}
-            alt="Thumbnail"
-            className="rounded-[14px] w-[1000px]"
+            alt="post_thumbnail"
+            className="rounded-[14px]"
+            sizes="100vw"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+            width={0}
+            height={0}
           />
         )}
         <p>

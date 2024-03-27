@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Post } from "~types/post";
 import { getAllPosts } from "~utils/posts";
@@ -24,7 +25,7 @@ const Article = async () => {
               className="flex items-center gap-x-12"
             >
               {post.metadata.thumbnail && (
-                <img
+                <Image
                   src={`/posts/${post.slug}/${post?.metadata.thumbnail ?? ""}`}
                   alt={`${post.slug} thumbnail`}
                   width={240}
