@@ -1,4 +1,4 @@
-import { skills } from "../../../metadata/resume";
+import { skills } from "~metadata/resume";
 
 function ResumeSkills() {
   return (

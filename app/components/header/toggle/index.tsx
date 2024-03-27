@@ -1,13 +1,13 @@
 import { useTheme } from "next-themes";
 import Link from "next/link";
 
-import GithubIcon from "../../icon/githubIcon";
-import LinkdeInIcon from "../../icon/linkdeInIcon";
-import MoonIcon from "../../icon/moonIcon";
-import SunIcon from "../../icon/sunIcon";
+import GithubIcon from "~components/icon/githubIcon";
+import LinkdeInIcon from "~components/icon/linkdeInIcon";
+import MoonIcon from "~components/icon/moonIcon";
+import SunIcon from "~components/icon/sunIcon";
 
-import { Button } from "../../ui/button";
-import { useIsMounted } from "../../../hooks/useIsMount";
+import { Button } from "~components/ui/button";
+import { useIsMounted } from "~hooks/useIsMount";
 
 function NavToggles() {
   const { theme = "dark", setTheme } = useTheme();

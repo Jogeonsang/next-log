@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Logo from "../../icon/logo";
-import MenuIcon from "../../icon/menuIcon";
+import Logo from "~components/icon/logo";
+import MenuIcon from "~components/icon/menuIcon";
 import {
   Sheet,
   SheetContent,
@@ -8,7 +8,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../../ui/sheet";
+} from "~components/ui/sheet";
 
 function NavSheet() {
   return (

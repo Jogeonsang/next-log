@@ -2,8 +2,8 @@ import { FileIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import MoonIcon from "../../icon/moonIcon";
-import SunIcon from "../../icon/sunIcon";
+import MoonIcon from "~components/icon/moonIcon";
+import SunIcon from "~components/icon/sunIcon";
 import {
   CommandDialog,
   CommandEmpty,
@@ -12,7 +12,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "../../ui/command";
+} from "~components/ui/command";
 
 function SearchCommand() {
   const router = useRouter();

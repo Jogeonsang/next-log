@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-import { useIsMounted } from "../../hooks/useIsMount";
+import { useIsMounted } from "~hooks/useIsMount";
 
 function NoSSR({ children }: PropsWithChildren<{}>) {
   const isMounted = useIsMounted();

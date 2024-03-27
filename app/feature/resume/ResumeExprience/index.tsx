@@ -1,4 +1,4 @@
-import { resumeInfo } from "../../../metadata/resume";
+import { resumeInfo } from "~metadata/resume";
 
 function ResumeExprience() {
   return (

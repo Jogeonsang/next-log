@@ -1,6 +1,6 @@
 import Link from "next/link";
-import useIsRouteActive from "~/hooks/useIsActive";
-import { cn } from "~/lib/utils";
+import useIsRouteActive from "~hooks/useIsActive";
+import { cn } from "~lib/utils";
 import NavSheet from "../navSheet";
 
 function PageNav() {
