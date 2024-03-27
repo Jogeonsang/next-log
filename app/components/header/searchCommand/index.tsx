@@ -1,6 +1,6 @@
 import { FileIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import MoonIcon from "~components/icon/moonIcon";
 import SunIcon from "~components/icon/sunIcon";

@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 /**
  * Function checks if the current route is active
@@ -6,8 +6,8 @@ import { useRouter } from "next/router";
  * @returns {boolean} - true if the current route is active not flase
  */
 function useIsRouteActive(pathToCheck: string) {
-  const router = useRouter();
-  const currentPath = router.asPath.split("?")[0]; // drop query params
+  const pathname = usePathname();
+  const currentPath = pathname.split("?")[0]; // drop query params
 
   // currentPath and pathToCheck are the same (e.g. /blog)
   if (currentPath === pathToCheck) return true;

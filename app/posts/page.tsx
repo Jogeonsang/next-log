@@ -1,13 +1,17 @@
-import { GetStaticProps } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Post } from "~types/post";
 import { getAllPosts } from "~utils/posts";
 
-type PostsPageProps = {
-  posts: Post[];
+const getPosts = async (): Promise<Post[]> => {
+  const posts = getAllPosts();
+
+  return posts;
 };
 
-function Article({ posts }: PostsPageProps) {
+const Article = async () => {
+  const posts = await getPosts();
+
   return (
     <section className="flex pt-12 pb-14 w-[900px] m-auto">
       <ul className="flex flex-col gap-y-20">
@@ -21,7 +25,7 @@ function Article({ posts }: PostsPageProps) {
               className="flex items-center gap-x-12"
             >
               {post.metadata.thumbnail && (
-                <img
+                <Image
                   src={`/posts/${post.slug}/${post?.metadata.thumbnail ?? ""}`}
                   alt={`${post.slug} thumbnail`}
                   width={240}
@@ -47,15 +51,6 @@ function Article({ posts }: PostsPageProps) {
       </ul>
     </section>
   );
-}
+};
 
 export default Article;
-
-export const getStaticProps: GetStaticProps = () => {
-  const posts = getAllPosts();
-  return {
-    props: {
-      posts,
-    },
-  };
-};
