@@ -1,40 +1,22 @@
 import { getPostBySlug, getAllPosts } from "~utils/posts";
+import { GetStaticPaths, GetStaticProps } from "next";
 import markdownToHtml from "~core/blog/markdownToHtml";
-import { Post } from "../../../types/post";
-import Image from "next/image";
+import { Post } from "~types/post";
 
-const getPost = async (slug: string | undefined): Promise<Post> => {
-  if (!slug || typeof slug !== "string") {
-    throw new Response("Not Found", { status: 404 });
-  }
-
-  const post: Post = getPostBySlug(slug); // 가정: 이 함수는 Post 타입의 객체를 반환
-  const mdxSource = await markdownToHtml(post.content);
-
-  return {
-    ...{ ...post, content: mdxSource },
-  };
+type PostPageProps = {
+  post: Post;
 };
 
-const PostPage: React.FC = async ({ params }: any) => {
-  const post = await getPost(params.slug);
-
+const PostPage: React.FC<PostPageProps> = ({ post }) => {
   return (
     <article className="prose dark:prose-invert max-w-none prose-pre:rounded-[9px] my-16">
       <div className="max-w-[1000px] m-auto text-center">
         <h1>{post.metadata.title}</h1>
         {post.metadata.thumbnail && (
-          <Image
+          <img
             src={`/posts/${post.slug}/${post.metadata.thumbnail}`}
-            alt="post_thumbnail"
-            className="rounded-[14px]"
-            sizes="100vw"
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
-            width={0}
-            height={0}
+            alt="Thumbnail"
+            className="rounded-[14px] w-[1000px]"
           />
         )}
         <p>
@@ -55,9 +37,31 @@ const PostPage: React.FC = async ({ params }: any) => {
 
 export default PostPage;
 
-export const dynamicParams = false;
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  if (!params?.slug || typeof params.slug !== "string") {
+    return {
+      notFound: true,
+    };
+  }
 
-export const generateStaticParams = async () => {
+  const post = getPostBySlug(params.slug);
+
+  const mdxSource = await markdownToHtml(post.content);
+
+  return {
+    props: {
+      post: {
+        ...post,
+        content: mdxSource,
+      },
+    },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts();
-  return posts.map((post) => ({ params: { slug: post.slug } }));
+  return {
+    paths: posts.map((post) => ({ params: { slug: post.slug } })),
+    fallback: false,
+  };
 };

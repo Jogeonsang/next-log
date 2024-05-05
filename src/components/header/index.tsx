@@ -1,5 +1,3 @@
-"use client";
-
 import SearchCommand from "./searchCommand";
 import NavToggles from "./toggle";
 import PageNav from "./nav";
