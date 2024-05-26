@@ -8,7 +8,7 @@ const getPost = async (slug: string | undefined): Promise<Post> => {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const post: Post = getPostBySlug(slug); // 가정: 이 함수는 Post 타입의 객체를 반환
+  const post: Post = getPostBySlug(slug);
   const mdxSource = await markdownToHtml(post.content);
 
   return {
@@ -54,8 +54,6 @@ const PostPage: React.FC = async ({ params }: any) => {
 };
 
 export default PostPage;
-
-export const dynamicParams = false;
 
 export const generateStaticParams = async () => {
   const posts = getAllPosts();
