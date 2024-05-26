@@ -55,8 +55,6 @@ const PostPage: React.FC = async ({ params }: any) => {
 
 export default PostPage;
 
-export const dynamicParams = false;
-
 export const generateStaticParams = async () => {
   const posts = getAllPosts();
   return posts.map((post) => ({ params: { slug: post.slug } }));
