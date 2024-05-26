@@ -1,4 +1,3 @@
-import ResumeContributed from "~feature/resume/ResumeContributed";
 import ResumeExprience from "~feature/resume/ResumeExprience";
 import ResumeSkills from "~feature/resume/ResumeSkkils";
 import { resumeInfo } from "~metadata/resume";
