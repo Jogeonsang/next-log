@@ -1,7 +1,6 @@
 /**
  * 목차 타입
  */
-
 export type TableOfContents = Section[];
 export type SubSection = {
   slug: string;
