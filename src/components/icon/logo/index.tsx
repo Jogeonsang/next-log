@@ -11,9 +11,9 @@ const Logo = (props: IconProps) => {
         y2="208"
         fill="none"
         stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="16"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="16"
       />
       <line
         x1="192"
@@ -22,9 +22,9 @@ const Logo = (props: IconProps) => {
         y2="192"
         fill="none"
         stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="16"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="16"
       />
     </svg>
   );
