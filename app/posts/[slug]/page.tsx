@@ -2,13 +2,18 @@ import { getPostBySlug, getAllPosts } from "~utils/posts";
 import markdownToHtml from "~core/blog/markdownToHtml";
 import { Post } from "../../../types/post";
 import Image from "next/image";
+import { cookies } from "next/headers";
+import i18nConfig from "../../../next-i18next.config";
 
-const getPost = async (slug: string | undefined): Promise<Post> => {
+const getPost = async (
+  slug: string | undefined,
+  lang: string
+): Promise<Post> => {
   if (!slug || typeof slug !== "string") {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const post: Post = getPostBySlug(slug);
+  const post: Post = getPostBySlug(slug, lang);
   const mdxSource = await markdownToHtml(post.content);
 
   return {
@@ -17,7 +22,9 @@ const getPost = async (slug: string | undefined): Promise<Post> => {
 };
 
 const PostPage: React.FC = async ({ params }: any) => {
-  const post = await getPost(params.slug);
+  const cookieStore = cookies();
+  const lang = cookieStore.get("lang")?.value || i18nConfig.defaultLocale;
+  const post = await getPost(params.slug, lang);
 
   return (
     <article className="prose dark:prose-invert max-w-none prose-pre:rounded-[9px] my-16">

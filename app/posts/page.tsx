@@ -1,10 +1,15 @@
+import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { Post } from "~types/post";
 import { getAllPosts } from "~utils/posts";
+import i18nConfig from "../../next-i18next.config";
 
 const getPosts = async (): Promise<Post[]> => {
-  const posts = getAllPosts();
+  const cookieStore = cookies();
+  const lang = cookieStore.get("lang")?.value || i18nConfig.defaultLocale;
+
+  const posts = getAllPosts(lang);
 
   return posts;
 };

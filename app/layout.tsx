@@ -4,8 +4,9 @@ import { Metadata } from "next";
 import Header from "~components/header";
 import ThemeProvider from "~styles/themeProvider";
 import i18nConfig from "../next-i18next.config";
-import TranslationProvider from "~core/TranslationProvider";
+import TranslationProvider from "~core/translation/translationProvider";
 import initTranslations from "../i18n";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Marcus log",
@@ -17,13 +18,14 @@ export function generateStaticParams() {
 }
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
-  const locale = "kr"; // 기본 로케일 설정
+  const { resources, i18n } = await initTranslations();
+  const detectedLanguage =
+    cookies().get("lang")?.value || i18n.language || i18nConfig.defaultLocale;
 
-  const { resources } = await initTranslations(locale);
   return (
-    <html suppressHydrationWarning lang={locale}>
+    <html suppressHydrationWarning lang={detectedLanguage}>
       <body>
-        <TranslationProvider locale={locale} resources={resources}>
+        <TranslationProvider resources={resources}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Header />
             <div className="flex w-full justify-center">

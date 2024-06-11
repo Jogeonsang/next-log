@@ -10,13 +10,20 @@ import {
   DropdownMenuTrigger,
 } from "~components/ui/dropdown-menu";
 import { Languages } from "~types/translation";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
+  const router = useRouter();
 
-  const changeLanguage = (lng: Languages) => {
-    i18n.changeLanguage(lng);
-    document.documentElement.lang = lng;
+  const changeLanguage = (locale: Languages) => {
+    if (locale && i18n.language === locale) return;
+
+    i18n.changeLanguage(locale);
+    document.documentElement.lang = locale;
+    Cookies.set("lang", locale, { expires: 365 });
+    window.location.reload();
   };
 
   return (
