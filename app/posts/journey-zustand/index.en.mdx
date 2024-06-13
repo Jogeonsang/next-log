@@ -144,7 +144,7 @@ interface IShowToastProps {
 
 export showToast = (payload: IShowToastProps) => {
     type: SHOW_TOAST,
-    payload.
+    payload
 }
 
 export closeToast = (id: string) => {
@@ -164,6 +164,9 @@ type ToastAction =
 ```
 
 Redux / Reducer
+
+```tsx:Typescript
+
 type ToastState = {
 toastList: Map<string, Toast>;
 }
@@ -172,7 +175,6 @@ const initialState: ToastState = {
 toastList: new Map()
 }
 
-```tsx:Typescript
 // reducers
 function toast(
     state: ToastState = initialState;
