@@ -1,8 +1,11 @@
-import { getPostBySlug, getAllPosts } from "~utils/posts";
-import markdownToHtml from "~core/blog/markdownToHtml";
-import { Post } from "../../../types/post";
 import Image from "next/image";
 import { cookies } from "next/headers";
+import dayjs from "dayjs";
+
+import { getPostBySlug, getAllPosts } from "~utils/posts";
+import markdownToHtml from "~core/blog/markdownToHtml";
+
+import { Post } from "../../../types/post";
 import i18nConfig from "../../../next-i18next.config";
 
 const getPost = async (
@@ -26,6 +29,13 @@ const PostPage: React.FC = async ({ params }: any) => {
   const lang = cookieStore.get("lang")?.value || i18nConfig.defaultLocale;
   const post = await getPost(params.slug, lang);
 
+  const fomattedDate = (date: string) => {
+    const formattedDateKr = dayjs(date).format("YYYY년 MM월 DD일");
+    const formattedDateEn = dayjs(date).format("MMMM DD, YYYY");
+
+    return lang === "kr" ? formattedDateKr : formattedDateEn;
+  };
+
   return (
     <article className="prose dark:prose-invert max-w-none prose-pre:rounded-[9px] my-16">
       <div className="max-w-[1000px] m-auto text-center">
@@ -45,7 +55,7 @@ const PostPage: React.FC = async ({ params }: any) => {
           />
         )}
         <p>
-          {post.metadata.category} | {post.metadata.date}
+          {post.metadata.category} | {fomattedDate(post.metadata.date)}
         </p>
       </div>
       <div className="max-w-[800px] m-auto">
