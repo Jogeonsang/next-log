@@ -29,7 +29,12 @@
     --ring: 240 5.9% 10%;
     --radius: 0.5rem;
     --code-highlight-color: 55, 65, 81;
+    --code-inline-highlight-background: #f7f7f7;
+    --code-inline-highlight-background: rgba(0, 0, 0, 0.03);
+    --code-inline-highlight-border: #ededed;
+    --code-inline-highlight-border: rgba(0, 0, 0, 0.04);
   }
+  /* --nextra-primary-hue: 212deg; */
 
   .dark {
     --background: 240 10% 3.9%;
@@ -54,6 +59,8 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
     --code-highlight-color: 229, 231, 235;
+    --code-inline-highlight-background: #2a2828;
+    --code-inline-highlight-border: #3e3c3c;
   }
 }
 
