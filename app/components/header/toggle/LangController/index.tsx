@@ -11,11 +11,9 @@ import {
 } from "~components/ui/dropdown-menu";
 import { Languages } from "~types/translation";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
-  const router = useRouter();
 
   const changeLanguage = (locale: Languages) => {
     if (locale && i18n.language === locale) return;

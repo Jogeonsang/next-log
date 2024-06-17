@@ -24,7 +24,7 @@ const getPost = async (
   };
 };
 
-const PostPage: React.FC = async ({ params }: any) => {
+const PostPage = async ({ params }: { params: { slug: string } }) => {
   const cookieStore = cookies();
   const lang = cookieStore.get("lang")?.value || i18nConfig.defaultLocale;
   const post = await getPost(params.slug, lang);
@@ -32,7 +32,6 @@ const PostPage: React.FC = async ({ params }: any) => {
   const fomattedDate = (date: string) => {
     const formattedDateKr = dayjs(date).format("YYYY년 MM월 DD일");
     const formattedDateEn = dayjs(date).format("MMMM DD, YYYY");
-
     return lang === "kr" ? formattedDateKr : formattedDateEn;
   };
 
@@ -46,10 +45,7 @@ const PostPage: React.FC = async ({ params }: any) => {
             alt="post_thumbnail"
             className="rounded-[14px]"
             sizes="100vw"
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
+            style={{ width: "100%", height: "auto" }}
             width={0}
             height={0}
           />
@@ -69,10 +65,9 @@ const PostPage: React.FC = async ({ params }: any) => {
     </article>
   );
 };
-
 export default PostPage;
 
 export const generateStaticParams = async () => {
   const posts = getAllPosts();
-  return posts.map((post) => ({ params: { slug: post.slug } }));
+  return posts.map((post) => ({ slug: post.slug }));
 };
