@@ -1,17 +1,31 @@
+import { cookies } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import dayjs from "dayjs";
 import { Post } from "~types/post";
 import { getAllPosts } from "~utils/posts";
+import i18nConfig from "../../next-i18next.config";
 
 const getPosts = async (): Promise<Post[]> => {
-  const posts = getAllPosts();
+  const cookieStore = cookies();
+  const lang = cookieStore.get("lang")?.value || i18nConfig.defaultLocale;
+
+  const posts = getAllPosts(lang);
 
   return posts;
 };
 
 const Article = async () => {
   const posts = await getPosts();
+  const cookieStore = cookies();
+  const lang = cookieStore.get("lang")?.value || i18nConfig.defaultLocale;
 
+  const fomattedDate = (date: string) => {
+    const formattedDateKr = dayjs(date).format("YYYY년 MM월 DD일");
+    const formattedDateEn = dayjs(date).format("MMMM DD, YYYY");
+
+    return lang === "kr" ? formattedDateKr : formattedDateEn;
+  };
   return (
     <section className="flex pt-12 pb-14 w-[900px] m-auto">
       <ul className="flex flex-col gap-y-20">
@@ -42,7 +56,7 @@ const Article = async () => {
                   {post.metadata.description}
                 </span>
                 <span className="text-sm text-slate-400">
-                  {post.metadata.date}
+                  {fomattedDate(post.metadata.date)}
                 </span>
               </div>
             </Link>

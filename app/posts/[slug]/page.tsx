@@ -1,14 +1,22 @@
+import Image from "next/image";
+import { cookies } from "next/headers";
+import dayjs from "dayjs";
+
 import { getPostBySlug, getAllPosts } from "~utils/posts";
 import markdownToHtml from "~core/blog/markdownToHtml";
-import { Post } from "../../../types/post";
-import Image from "next/image";
 
-const getPost = async (slug: string | undefined): Promise<Post> => {
+import { Post } from "../../../types/post";
+import i18nConfig from "../../../next-i18next.config";
+
+const getPost = async (
+  slug: string | undefined,
+  lang: string
+): Promise<Post> => {
   if (!slug || typeof slug !== "string") {
     throw new Response("Not Found", { status: 404 });
   }
 
-  const post: Post = getPostBySlug(slug);
+  const post: Post = getPostBySlug(slug, lang);
   const mdxSource = await markdownToHtml(post.content);
 
   return {
@@ -16,8 +24,16 @@ const getPost = async (slug: string | undefined): Promise<Post> => {
   };
 };
 
-const PostPage: React.FC = async ({ params }: any) => {
-  const post = await getPost(params.slug);
+const PostPage = async ({ params }: { params: { slug: string } }) => {
+  const cookieStore = cookies();
+  const lang = cookieStore.get("lang")?.value || i18nConfig.defaultLocale;
+  const post = await getPost(params.slug, lang);
+
+  const fomattedDate = (date: string) => {
+    const formattedDateKr = dayjs(date).format("YYYY년 MM월 DD일");
+    const formattedDateEn = dayjs(date).format("MMMM DD, YYYY");
+    return lang === "kr" ? formattedDateKr : formattedDateEn;
+  };
 
   return (
     <article className="prose dark:prose-invert max-w-none prose-pre:rounded-[9px] my-16">
@@ -29,16 +45,13 @@ const PostPage: React.FC = async ({ params }: any) => {
             alt="post_thumbnail"
             className="rounded-[14px]"
             sizes="100vw"
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
+            style={{ width: "100%", height: "auto" }}
             width={0}
             height={0}
           />
         )}
         <p>
-          {post.metadata.category} | {post.metadata.date}
+          {post.metadata.category} | {fomattedDate(post.metadata.date)}
         </p>
       </div>
       <div className="max-w-[800px] m-auto">
@@ -52,10 +65,9 @@ const PostPage: React.FC = async ({ params }: any) => {
     </article>
   );
 };
-
 export default PostPage;
 
 export const generateStaticParams = async () => {
   const posts = getAllPosts();
-  return posts.map((post) => ({ params: { slug: post.slug } }));
+  return posts.map((post) => ({ slug: post.slug }));
 };

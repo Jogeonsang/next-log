@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { Post, PostMetadata } from "~types/post";
+import i18nConfig from "../../next-i18next.config";
 
 const postsDirectory = path.join(process.cwd(), "app/posts");
 
@@ -13,16 +14,20 @@ export function getPostSlugs() {
     return stat.isDirectory() && file !== "[slug]";
   });
 }
-export function getPostBySlug(slug: string) {
+export function getPostBySlug(slug: string, lang?: string) {
   const decodedSlug = decodeURIComponent(slug);
 
   const realSlug = decodedSlug.replace(/\.mdx?$/, "");
   const slugDirectoryPath = path.join(postsDirectory, realSlug);
 
+  const detectedLanguage = lang || i18nConfig.defaultLocale;
+  // lang에 따라 'index.mdx' 또는 'index.md' 파일을 찾습니다.
   // 'index.mdx' 또는 'index.md' 파일을 찾습니다.
-  const fullPath = fs.existsSync(path.join(slugDirectoryPath, "index.mdx"))
-    ? path.join(slugDirectoryPath, "index.mdx")
-    : path.join(slugDirectoryPath, "index.md");
+  const fullPath = fs.existsSync(
+    path.join(slugDirectoryPath, `index.${detectedLanguage}.mdx`)
+  )
+    ? path.join(slugDirectoryPath, `index.${detectedLanguage}.mdx`)
+    : path.join(slugDirectoryPath, `index.${detectedLanguage}.md`);
 
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
@@ -34,9 +39,9 @@ export function getPostBySlug(slug: string) {
   return { slug: realSlug, metadata: data as PostMetadata, content };
 }
 
-export function getAllPosts(): Post[] {
+export function getAllPosts(lang?: string): Post[] {
   const slugs = getPostSlugs();
-  const posts: Post[] = slugs.map((slug) => getPostBySlug(slug));
+  const posts: Post[] = slugs.map((slug) => getPostBySlug(slug, lang));
 
   posts.sort((post1, post2) => {
     const date1 = new Date(post1.metadata.date);

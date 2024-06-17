@@ -1,6 +1,6 @@
 ---
 title: Journey to Zustand Simplifying Complex Redux Structures
-date: February 8, 2023
+date: 2023-2-8
 description: Exploring the thought process behind introducing a new state management system at Wanted-Insight
 tags: ["React", "Zustand", "State Management"]
 published: true
@@ -144,7 +144,7 @@ interface IShowToastProps {
 
 export showToast = (payload: IShowToastProps) => {
     type: SHOW_TOAST,
-    payload.
+    payload
 }
 
 export closeToast = (id: string) => {
@@ -164,6 +164,9 @@ type ToastAction =
 ```
 
 Redux / Reducer
+
+```tsx:Typescript
+
 type ToastState = {
 toastList: Map<string, Toast>;
 }
@@ -172,7 +175,6 @@ const initialState: ToastState = {
 toastList: new Map()
 }
 
-```tsx:Typescript
 // reducers
 function toast(
     state: ToastState = initialState;
