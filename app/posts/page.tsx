@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { Post } from "~types/post";
 import { getAllPosts } from "~utils/posts";
 import i18nConfig from "../../next-i18next.config";
+import { Skeleton } from "~components/ui/skeleton";
 
 const getPosts = async (): Promise<Post[]> => {
   const cookieStore = cookies();
@@ -29,6 +30,8 @@ const Article = async () => {
   return (
     <section className="flex pt-12 pb-14 w-[900px] m-auto">
       <ul className="flex flex-col gap-y-20">
+        <Skeleton className="w-240 h-240" />
+        <Skeleton className="w-240 h-240" />
         {posts.map((post) => (
           <li
             key={post.slug}
