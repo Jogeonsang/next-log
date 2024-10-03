@@ -50,15 +50,14 @@ export async function GET(req: NextRequest) {
             fontWeight: "700",
           }}
         >
-          <span style={{ fontSize: 19 }}>Geon</span>
-          <span style={{ fontSize: 12 }}>marcus-log.dev</span>
+          <span style={{ fontSize: 38 }}>Geon</span>
         </div>
         <div
           style={{
             display: "flex",
             alignItems: "center",
             flexWrap: "wrap",
-            padding: "0px 30px",
+            padding: "0px 40px",
             paddingTop: "80px",
             margin: "0 0",
             maxWidth: "1050px",
@@ -67,8 +66,8 @@ export async function GET(req: NextRequest) {
             textAlign: "left",
             color: "#0a0a0a",
             lineHeight: "1.4",
-            fontSize: 30,
-            fontWeight: 700,
+            fontSize: 50,
+            fontWeight: "bold",
           }}
         >
           {title}
@@ -81,7 +80,7 @@ export async function GET(req: NextRequest) {
             bottom: 26,
             textAlign: "left",
             position: "absolute",
-            fontSize: 20,
+            fontSize: 35,
             lineHeight: "1.75rem",
           }}
         >
