@@ -5,6 +5,21 @@ export const resumeInfo = {
     "A web front-end developer with a strong interest in business. <br/>Passionate about developer productivity and proposing ideas to the team.",
   experience: [
     {
+      company: "Datarize",
+      position: "Frontend Engineer",
+      period: "2025.02 ~",
+      summary: "",
+      projects: [
+        {
+          name: "Datarize Design System",
+          duration: "2025.02 ~",
+          description:
+            "Datarize Design System is a design system for Datarize.",
+          responsibilities: ["Developed a design system for Datarize."],
+        },
+      ],
+    },
+    {
       company: "WantedLab.",
       position: "Frontend Engineer",
       period: "2022.02 ~",
